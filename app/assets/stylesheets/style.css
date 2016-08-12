@@ -1,0 +1,99 @@
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  font-family: 'Raleway', sans-serif;
+  background-color: #AED1D6;
+}
+
+#map {
+  height: 500px;
+  width: 500px;
+  border: 3px solid #E09873;
+  border-radius: 5px;
+}
+
+#logo {
+  width: 350px;
+  padding: 10px;
+  display: block;
+   margin-left: auto;
+   margin-right: auto
+}
+
+input {
+  width: 300px;
+  margin: 10px;
+}
+
+button {
+  width: 50px;
+}
+
+.right {
+  width: 500px;
+}
+
+.list {
+  height: 500px;
+  margin: 0;
+  padding: 0;
+  border: 3px solid #E09873;
+  border-radius: 5px;
+  background-color: white;
+  overflow: auto;
+}
+
+.results {
+  text-align: center;
+  font-size: 30px;
+  height: 60px;
+  line-height: 60px;
+  color: #314570;
+}
+
+main {
+  display: flex;
+  margin: auto;
+  justify-content: space-between;
+  width: 1020px;
+}
+
+.search {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+#enter {
+  width: 30px;
+  height: 30px;
+  /*margin: 5px;*/
+  padding-top: 15px;
+  cursor: pointer;
+}
+
+#input {
+  height: 30px;
+  /*margin: 5px;*/
+  border-radius: 3px;
+  border: 0;
+  font-size: 16px;
+  font-weight: 300;
+  padding: 5px;
+  color: #314570;
+}
+
+.place {
+  font-size: 24px;
+  color: #314570;
+  padding: 10px;
+}
+
+.rating {
+  font-size: 18px;
+  color: #314570;
+  padding-left: 10px;
+  padding-right: 10px;
+}

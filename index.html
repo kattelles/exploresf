@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kat + Zenefits</title>
+    <link rel="icon" href="./app/assets/img/crane.png"  type="image/png" >
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <script
+      type="text/javascript"
+      src="./frontend/index.js"/>
+    </script>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway"
+      rel="stylesheet">
+
+    <link
+      rel="stylesheet"
+      href="./app/assets/stylesheets/style.css"
+      media="screen"
+      title="no title"
+      charset="utf-8">
+  </head>
+  <body>
+
+    <img id="logo" src="./app/assets/img/logo.png" alt="" />
+
+    <main>
+
+      <div class="right">
+
+        <div class="results">search results</div>
+        <div class="list">
+          <div id="places"></div>
+        </div>
+
+      </div>
+
+    <div class="left">
+
+      <div class="search">
+        <input id="input" type="text" name="name" value="">
+        <img id="enter" src="./app/assets/img/search.png" alt="" />
+      </div>
+
+      <div id="map"></div>
+    </div>
+
+
+    </main>
+
+    <script type="text/javascript">
+      var map;
+      function initMap() {
+        window.map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 37.7758, lng: -122.435}, // this is SF
+        zoom: 12
+      });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAV0aE3BPfwbibKum9F6Cgrkr2poPqBfsc&callback=initMap&libraries=places"
+    async defer></script>
+  </body>
+</html>

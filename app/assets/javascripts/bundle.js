@@ -52,6 +52,14 @@
 	document.addEventListener('DOMContentLoaded', function () {
 	  console.log("welcome, zenefits. please pardon any errors. :)");
 	
+	  document.addEventListener("keypress", function (e) {
+	    if (e.keyCode === 13) {
+	      clearMarkers();
+	      var input = document.getElementById('input').value;
+	      search(input);
+	    }
+	  });
+	
 	  document.getElementById("enter").addEventListener("click", function (e) {
 	    clearMarkers();
 	    var input = document.getElementById('input').value;
@@ -103,6 +111,8 @@
 	
 	    var addr = place.geometry.location.lat() + "," + place.geometry.location.lng();
 	
+	    marker["addr"] = addr;
+	
 	    placesList.innerHTML += '<div id="' + addr + '"class=' + '"entry"' + '><div class=' + "place" + '>' + place.name + " &#9734;" + rating + "</div>" + '<div class=' + "rating" + '>' + place.formatted_address + '</div></div>';
 	
 	    bounds.extend(place.geometry.location);
@@ -111,11 +121,27 @@
 	
 	  var entries = document.querySelectorAll(".entry");
 	
-	  for (var _i = 0; _i < entries.length; _i++) {
+	  var _loop = function _loop(_i) {
 	    entries[_i].addEventListener("click", function (e) {
 	      var local = window.event.currentTarget.id;
 	      window.location = 'https://maps.google.com/maps?saddr=san+francisco&daddr=' + local;
 	    });
+	    var mark = void 0;
+	    entries[_i].addEventListener("mouseover", function (e) {
+	      markers.forEach(function (marker) {
+	        if (marker["addr"] == window.event.currentTarget.id) {
+	          mark = marker;
+	        }
+	      });
+	      mark.setAnimation(google.maps.Animation.BOUNCE);
+	      setTimeout(function () {
+	        mark.setAnimation(null);
+	      }, 750);
+	    });
+	  };
+	
+	  for (var _i = 0; _i < entries.length; _i++) {
+	    _loop(_i);
 	  }
 	};
 	

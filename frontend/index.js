@@ -1,7 +1,19 @@
+let markers = [];
+
+function clearMarkers() {
+  markers.forEach(marker => {
+    marker.setMap(null);
+  });
+  let places = document.getElementById('places');
+  places.innerHTML = "";
+  markers = [];
+}
+
+
 function createMarkers(places) {
   var bounds = new google.maps.LatLngBounds();
   var placesList = document.getElementById('places');
-
+  let locations = {};
   for (var i = 0, place; place = places[i]; i++) {
     var image = {
       url: "./app/assets/img/flag.png",
@@ -19,12 +31,31 @@ function createMarkers(places) {
       animation: google.maps.Animation.DROP
     });
 
-    placesList.innerHTML += '<div class=' + "place" + '>' + place.name + '</div>';
-    placesList.innerHTML += '<div class=' + "rating" + '>' + place.formatted_address + '</div>';
+    markers.push(marker);
+    let rating;
+    rating = (place.rating !== undefined)? place.rating : "n/a";
+
+    let addr = place.geometry.location.lat() + "," + place.geometry.location.lng();
+
+    // locations[place.id] = addr;
+
+    placesList.innerHTML += '<div id="' + addr + '"class=' + '"entry"'
+    + '><div class=' + "place" + '>' + place.name + " &#9734;" + rating +
+    "</div>" + '<div class=' + "rating" + '>' + place.formatted_address +
+    '</div></div>';
 
     bounds.extend(place.geometry.location);
   }
   map.fitBounds(bounds);
+
+  let entries = document.querySelectorAll(".entry");
+
+  for (let i = 0; i < entries.length; i++) {
+    entries[i].addEventListener("click", (e) => {
+      let local = window.event.currentTarget.id;
+      window.location = 'https://maps.google.com/maps?saddr=san+francisco&daddr=' + local;
+    });
+  }
 }
 
 
@@ -34,27 +65,35 @@ let callback =  function(results, status) {
   }
 };
 
+let search = function(input) {
+    let service;
+    let map;
+    let infowindow;
+
+    let SF = new google.maps.LatLng(37.7758,-122.435);
+    map = window.map;
+
+    var request = {
+      location: SF,
+      radius: '500',
+      query: `${input}`
+    };
+
+    service = new google.maps.places.PlacesService(map);
+    service.textSearch(request, callback);
+
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   console.log("welcome, zenefits. please pardon any errors. :)");
+  // search("coffee");
 
   document.getElementById("enter").addEventListener("click", e => {
+  if (markers) {
+    clearMarkers();
+  }
   let input = document.getElementById('input').value;
-
-  let service;
-  let map;
-  let infowindow;
-
-  let SF = new google.maps.LatLng(37.7758,-122.435);
-  map = window.map;
-
-  var request = {
-    location: SF,
-    radius: '500',
-    query: `${input}`
-  };
-
-  service = new google.maps.places.PlacesService(map);
-  service.textSearch(request, callback);
+  search(input);
   });
 
 });

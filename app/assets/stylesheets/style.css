@@ -27,10 +27,6 @@ input {
   margin: 10px;
 }
 
-button {
-  width: 50px;
-}
-
 .right {
   width: 500px;
 }
@@ -58,7 +54,6 @@ button {
   text-align: center;
   font-size: 16px;
   height: 20px;
-  /*line-height: 20px;*/
   color: #314570;
   padding-top: 5px;
   padding-bottom: 15px;
@@ -98,9 +93,11 @@ main {
   font-size: 24px;
   padding: 10px;
 }
+
 .entry {
-    color: #314570;
+  color: #314570;
 }
+
 .entry:hover {
   background-color: #7584ad;
   color: white;

@@ -7,7 +7,7 @@
 
 Explore SF is an easy to use search app to find places in San Francisco. It is written in Javascript (vanilla), HTML5 and CSS3.
 
-![image of splash](https://github.com/kattelles/JS-Paint/blob/master/app/assets/img/screenshot.png)
+![image of splash](https://github.com/kattelles/exploresf/blob/master/app/assets/img/screenshot.png)
 
 This app utilizes Google Maps API to render a dynamic app with markers for search results.
 
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function(){
 ```
 
 It also allows users to click on search results to get directions.
-![image of splash](https://github.com/kattelles/JS-Paint/blob/master/app/assets/img/click.png)
+![image of splash](https://github.com/kattelles/exploresf/blob/master/app/assets/img/click.png)
 
 ## Future Plans
 

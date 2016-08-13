@@ -34,8 +34,10 @@ let createMarkers = function(places) {
     let rating;
     rating = (place.rating !== undefined)? place.rating : "n/a";
 
-    let addr = place.geometry.location.lat() + "," + place.geometry.location.lng();
+    let addr = place.geometry.location.lat() + ","
+      + place.geometry.location.lng();
 
+    marker["addr"] = addr;
 
     placesList.innerHTML += '<div id="' + addr + '"class=' + '"entry"'
     + '><div class=' + "place" + '>' + place.name + " &#9734;" + rating +
@@ -51,7 +53,18 @@ let createMarkers = function(places) {
   for (let i = 0; i < entries.length; i++) {
     entries[i].addEventListener("click", (e) => {
       let local = window.event.currentTarget.id;
-      window.location = 'https://maps.google.com/maps?saddr=san+francisco&daddr=' + local;
+      window.location = 'https://maps.google.com/maps?saddr=san+francisco&daddr='
+      + local;
+    });
+    let mark;
+    entries[i].addEventListener("mouseover", (e) => {
+      markers.forEach(marker => {
+        if(marker["addr"] == window.event.currentTarget.id) {
+          mark = marker;
+        }
+      });
+      mark.setAnimation(google.maps.Animation.BOUNCE);
+      setTimeout(function(){ mark.setAnimation(null); }, 750);
     });
   }
 };
